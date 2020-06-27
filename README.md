@@ -3,7 +3,7 @@
 
 ## 1.0 Introduction
 
-In this project we are trying to build cloud based analysis database for sparkfy from thier data which stored in JSON format in S3 buckets.
+In this project we are trying to build cloud based analysis database for sparkfy from their data which stored in JSON format in S3 buckets.
 the data is about their user logs and songs used in their app.
 
 this project is aimed to build ETL pipeline, extract the data from the buckets, staging them into redshift and finally transform the data into relational database.
