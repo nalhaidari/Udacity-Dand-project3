@@ -15,7 +15,7 @@ as a test a dashboard will be created from the database
 
 the ETL Pipeline can be summriezed in the following image
 
-<img src="Project3_ERD.png" alt="ERD" >
+<img src="Project3_ERD.png" alt="ERD" width="500" height="600">
 <details>
   <summary><b><font color="red" size= 2>Image1:  ETL process</font></B></summary>
   <p>
