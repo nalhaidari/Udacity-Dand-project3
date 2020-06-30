@@ -151,20 +151,53 @@ ev.sessionid,
 ev.location, 
 ev.useragent
 from StagingEvents ev left join StagingSongs s
-on ev.song = s.title and ev.artist = s.artist_name
+on ev.song = s.title and ev.artist = s.artist_name and ev.length  = s.duration
 where ev.page = 'NextSong' and song_id is not null
 """)
+
+
+
+# unique userids = 97
+# unique (userid, firstname, lastname, gender, level) combinations  = 107
+# So in the dataset there are 10 records represent change of status we need to remove
+# which can be done either by joining the last session info for every user to the user details 
+# or by setting where clause to limit the select statement to the last session
+# Also it can be done by manageing conflicts at the time of table creation
+
+
+# In the first submession I used this query to insert records into user table and it was rejected due to containing a join
+# and that was to get the last record for every user.
+# I believe there is no issue on it but it's slower than useing where clause.
+# my question is 
+# is there any concern to that query other than timing?
+
+# Last submission query which was rejected. 
+
+# user_table_insert = ("""
+# insert into users(
+# userid, firstname, lastname, gender, level)
+# select s.userid, s.firstname, s.lastname, s.gender, s.level
+# from  StagingEvents s join (
+# select userid, max(ts) as ts from StagingEvents
+# group by 1) lastSession
+# on s.userid = lastSession.userid and s.ts = lastSession.ts and s.userid is not null
+# """)
+# 97 records returned Duration 616 ms
 
 
 user_table_insert = ("""
 insert into users(
 userid, firstname, lastname, gender, level)
 select s.userid, s.firstname, s.lastname, s.gender, s.level
-from  StagingEvents s join (
-select userid, max(ts) as ts from StagingEvents
-group by 1) lastSession
-on s.userid = lastSession.userid and s.ts = lastSession.ts and s.userid is not null
+from  StagingEvents s
+where s.ts = (select max(ls.ts) from StagingEvents ls 
+where ls.userid = s.userid)
+and s.userid is not null
 """)
+# 97 records returned Duration 255 ms
+
+
+
 
 song_table_insert = ("""
 insert into songs (
