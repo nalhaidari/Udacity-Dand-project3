@@ -19,22 +19,26 @@ def insert_tables(cur, conn):
 
 
 def main():
+    # grab connection information
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
-
+    # connect to DWH instance
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
-
+    # Loading staging tables
     print("Loading staging tables ...")
     load_staging_tables(cur, conn)
+    # commit to avoid loosing progress
     conn.commit()
     print ("Done!!!")
+    # Loading RDB tabels
     print("inserting into tables ...")
     insert_tables(cur, conn)
     print ("All Done!!!")
+    # commit to save post canges
     conn.commit()
 
-
+    # close connection
     conn.close()
 
 
