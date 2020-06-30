@@ -3,12 +3,20 @@ import psycopg2
 from sql_queries import copy_table_queries, insert_table_queries,create_table_queries,drop_table_queries
 
 def load_staging_tables(cur, conn):
+    """
+    this function is to loop through staging tables and fill them with recodes
+    the inseret query which containing the source of data is in sql_queries.py
+    """
     for query in copy_table_queries:
         cur.execute(query)
         conn.commit()
 
 
 def insert_tables(cur, conn):
+    """
+    this function is to loop through relational database and insert their records from the desiered sources
+    the inseret query which containing the source of data is in sql_queries.py
+    """
     for i, query in enumerate(insert_table_queries):
 
         print(i,end="\t")
