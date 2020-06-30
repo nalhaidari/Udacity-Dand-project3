@@ -124,7 +124,7 @@ order by 1"""
 pd.read_sql_query(query,conn).set_index("hour").plot(figsize=(20  ,8));          
 </div>
 </pre>
-<img src="listining time during day.png" alt="ERD" >
+<img src="listining time during day.png" alt="listining time during day" >
 
 </details>
 
@@ -150,6 +150,6 @@ ax.invert_yaxis()
 
 </div>
 </pre>
-<img src="top10_artisits.png" alt="ERD" >
+<img src="top10_artisits.png" alt="top10_artisits" >
 
 </details>
