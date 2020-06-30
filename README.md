@@ -15,7 +15,7 @@ as a test a dashboard will be created from the database
 
 the ETL Pipeline can be summriezed in the following image
 
-<img src=https://github.com/nalhaidari/Udacity-Dand-project3/blob/master/project3_ERD.png?raw=true alt="ERD" width="1000" height="500">
+<img src="https://github.com/nalhaidari/Udacity-Dand-project3/blob/master/project3_ERD.png?raw=true" alt="ERD" width="1000" height="500">
 <details>
   <summary><b><font color="red" size= 2>Image1:  ETL process</font></B></summary>
   <p>
