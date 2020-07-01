@@ -142,6 +142,7 @@ join
 artists a
 on sp.artist_id = a.artist_id
 group by 1
+order by 2 desc
 limit 10
 """
 
