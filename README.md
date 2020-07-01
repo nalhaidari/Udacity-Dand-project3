@@ -145,7 +145,7 @@ group by 1
 limit 10
 """
 
-pd.read_sql_query(query,conn).sort_values("count" ,ascending=False).plot(y ="count", x ="artist_name" , kind = "barh", figsize= (10,10))
+ax = pd.read_sql_query(query,conn).sort_values("count" ,ascending=False).plot(y ="count", x ="artist_name" , kind = "barh", figsize= (10,10))
 ax.invert_yaxis()
 
 </div>
